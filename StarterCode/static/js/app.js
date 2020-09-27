@@ -5,7 +5,7 @@ function buildMetadata(sample) {
     var result = resultsarray[0]
     var panel = d3.select("#sample-metadata");
     panel.html("");
-    Object.entries(result).foreach(([key, value]) => {
+    Object.entries(result).forEach(([key, value]) => {
       var row = panel.append("panel-body");
       row.text(`${key}: ${value} \n`)
     });
@@ -48,9 +48,9 @@ function buildCharts(sample) {
     Plotly.newPlot("bubble", data, layout);
 // bar plot
     d3.json("samples.json").then(function (data) {
-      var values = data.samples["sample_values"];
-      var labels = data.samples["otu_ids"];
-      var display = data.samples["otu_labels"];
+      var values = sample_values.slice(0, 10).reverse();
+      var labels = otu_ids.slice(0, 10).map(otu_id => `OTU ${otu_id}`).reverse();
+      var display = otu_labels.slice(0, 10).reverse();
 
       var barChart = {
         x: values,
