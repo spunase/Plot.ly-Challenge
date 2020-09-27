@@ -1,4 +1,5 @@
 function buildMetadata(sample) {
+  // Using D3 library to read sample.json
   d3.json("samples.json").then((data) => {
     var metadata = data.metadata;
     var resultsarray = metadata.filter(sampleobject => sampleobject.id == sample);
@@ -15,8 +16,8 @@ function buildMetadata(sample) {
 
 function buildCharts(sample) {
   d3.json("samples.json").then(function (data) {
-    
-    for (var i =0; i< data.samples.length ;i++) {
+
+    for (var i = 0; i < data.samples.length; i++) {
       if (data.samples[i].id == sample) {
         console.log(data.samples[i].otu_ids)
         var otu_ids = data.samples[i].otu_ids;
@@ -24,7 +25,7 @@ function buildCharts(sample) {
         var otu_labels = data.samples[i].otu_labels;
       }
     }
-    // @TODO: Build a Bubble Chart using the sample data
+    // Build a Bubble Chart using the sample data
     var trace1 = {
       x: otu_ids,
       y: sample_values,
@@ -33,8 +34,8 @@ function buildCharts(sample) {
       marker: {
         size: sample_values,
         color: otu_ids,
-              }
-                 };
+      }
+    };
 
 
     var data = [trace1];
@@ -44,9 +45,9 @@ function buildCharts(sample) {
       xaxis: { title: "OTU ID" },
       title: "Belly Button Bacteria",
     };
-    
+
     Plotly.newPlot("bubble", data, layout);
-// bar plot
+    // Build a Bar chart using the sample data
     d3.json("samples.json").then(function (data) {
       var values = sample_values.slice(0, 10).reverse();
       var labels = otu_ids.slice(0, 10).map(otu_id => `OTU ${otu_id}`).reverse();
@@ -72,7 +73,7 @@ function buildCharts(sample) {
       Plotly.newPlot("bar", data, layout);
     });
   });
-}    
+}
 
 function init() {
   // Grab a reference to the dropdown select element
