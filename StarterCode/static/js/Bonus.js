@@ -1,13 +1,14 @@
-function buildGauge(wfreq) {
+function buildGauge(sample) {
     d3.json("samples.json").then((data) => {
-        for (var i = 0; i < data.samples.length; i++) {
-            if (data.samples[i].id == wfreq) {
+        for (var i = 0; i < data.metadata.length; i++) {
+            if (data.metadata[i].id == sample) {
               
-              var wfreq = data.samples[i].wfreq;
+              var wfreq = data.metadata[i].wfreq;
 
-
-
-
+            }
+        }
+    
+    level = wfreq * 20
 var traceA = {
   type: "pie",
   showlegend: false,
@@ -37,9 +38,9 @@ var traceA = {
   hoverinfo: "label"
 };
 
-var degrees = 115, radius = .6;
+var degrees = 180 - level, radius = .6;
 var radians = degrees * Math.PI / 180;
-var x = -1 * radius * Math.cos(radians);
+var x = radius * Math.cos(radians);
 var y = radius * Math.sin(radians);
 // Path: may have to change to create a better triangle
 var mainPath = 'M -.0 -0.035 L .0 0.035 L ',
@@ -51,23 +52,34 @@ var path = mainPath.concat(pathX,space,pathY,pathEnd);
 
 var layout = {
   shapes:[{
-      type: 'line',
-      x0: 0,
-      y0: 0,
-      x1: x,
-      y1: 0.5,
-      line: {
-        color: 'black',
-        width: 8
-      }
-    }],
+        type: 'path',
+        path: path,
+        fillcolor: "850000",
+        line: {
+            color: "850000"
+        }
+    } 
+],      
+        
   title: "Belly Button Washing Frequency <br> Scrubs per Week",
-  xaxis: {visible: false, range: [-1, 1]},
-  yaxis: {visible: false, range: [-1, 1]}
+  xaxis: {
+    zeroline:false,
+    showticklabels: false,
+    showgrid: false,
+    range: [-1, 1]
+},
+yaxis: {
+    zeroline: false,
+    showticklabels: false,
+    showgrid: false,
+    range: [-1, 1]
+}
+
 };
 
 var data = [traceA];
 var gaugeDiv = document.getElementById("gauge");
 
-Plotly.plot(gaugeDiv, data, layout, {staticPlot: true});
+Plotly.plot(gaugeDiv, data, layout);
+    });
 }
