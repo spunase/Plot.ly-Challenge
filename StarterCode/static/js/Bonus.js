@@ -1,5 +1,10 @@
+function buildGauge(wfreq) {
+    d3.json("samples.json").then((data) => {
+        for (var i = 0; i < data.samples.length; i++) {
+            if (data.samples[i].id == wfreq) {
+              
+              var wfreq = data.samples[i].wfreq;
 
-var gaugeDiv = document.getElementById("gauge");
 
 
 
@@ -62,5 +67,7 @@ var layout = {
 };
 
 var data = [traceA];
+var gaugeDiv = document.getElementById("gauge");
 
 Plotly.plot(gaugeDiv, data, layout, {staticPlot: true});
+}
