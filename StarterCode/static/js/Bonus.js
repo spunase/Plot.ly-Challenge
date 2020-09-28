@@ -37,9 +37,9 @@ function buildGauge(sample) {
     hoverinfo: "label"
     };
     // Needle
-    var degrees = 50, radius = .9;
+    var degrees = 180 - level, radius = .9;
     var radians = degrees * Math.PI / 180;
-    var x = -1 * radius * Math.cos(radians)* wfreq;
+    var x = radius * Math.cos(radians);
     var y = radius * Math.sin(radians);
     // Path: may have to change to create a better triangle
     var mainPath = 'M -.0 -0.035 L .0 0.035 L ',
@@ -51,14 +51,21 @@ function buildGauge(sample) {
 
     var layout = {
     shapes:[{
-            type: 'path',
-            path: path,
-            fillcolor: "850000",
+            // type: 'path',
+            // path: path,
+            // fillcolor: "850000",
+            // line: {
+            //     color: "850000"
+            type: 'line',
+            x0: 0.5,
+            y0: 0.5,
+            x1: 0.7,
+            y1: 0.7,
             line: {
-                color: "850000"
+            color: 'black',
+            width: 3
             }
-        } 
-    ],      
+      }],
             
     title: "Belly Button Washing Frequency <br> Scrubs per Week",
     xaxis: {
