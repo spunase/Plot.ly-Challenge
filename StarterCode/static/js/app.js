@@ -73,10 +73,10 @@ function buildCharts(sample) {
       // Apply the group bar mode to the layout
       var layout = {
         margin: {
-          l: 100,
-          r: 100,
-          t: 100,
-          b: 100
+          l: 200,
+          r: 50,
+          t: 10,
+          b: 50
         }
       };
       // Render the plot to the div tag with id "bar"
