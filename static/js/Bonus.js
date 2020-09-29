@@ -8,7 +8,6 @@ function buildGauge(sample) {
         for (var i = 0; i < count; i++) {
             
             if (data.metadata[i].id == sample) {
-
                 var wfreq = data.metadata[i].wfreq;
             }
         };
