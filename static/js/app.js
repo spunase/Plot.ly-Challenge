@@ -46,7 +46,8 @@ function buildCharts(sample) {
 
     var layout = {
       xaxis: { title: "OTU ID" },
-      title: "Belly Button Bacteria",
+      yaxis: { title: "Sample Values"},
+      title: "Belly Button Bacteria in Sample",
     };
     // Render the plot to the div tag with id "bubble"
     Plotly.newPlot("bubble", data, layout);
@@ -73,10 +74,13 @@ function buildCharts(sample) {
 
       // Apply the group bar mode to the layout
       var layout = {
+        title: "Top 10 OTUs in the individual",
+        xaxis: { title: "Sample Values"},
+        yaxis: { title: "OTU ID"},
         margin: {
           l: 200,
           r: 50,
-          t: 10,
+          t: 30,
           b: 50
         }
       };
