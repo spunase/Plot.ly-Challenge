@@ -22,7 +22,6 @@ function buildCharts(sample) {
   //  Extract the sample attributes
     for (var i = 0; i < data.samples.length; i++) {
       if (data.samples[i].id == sample) {
-        console.log(data.samples[i].otu_ids)
         var otu_ids = data.samples[i].otu_ids;
         var sample_values = data.samples[i].sample_values;
         var otu_labels = data.samples[i].otu_labels;
