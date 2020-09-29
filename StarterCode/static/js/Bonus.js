@@ -1,5 +1,8 @@
+//Build Gauge meter for the belly button wash frequency
 function buildGauge(sample) {
+    // Using D3 library to read sample.json
     d3.json("samples.json").then((data) => {
+        //  Extract the metadata wash frequency attribute
         for (var i = 0; i < data.metadata.length; i++) {
             if (data.metadata[i].id == sample) {
 
@@ -12,7 +15,7 @@ function buildGauge(sample) {
                 var x = radius * Math.cos(radians);
                 var y = radius * Math.sin(radians);
 
-                // Path May Have to Change to Create a Better Triangle
+                // create a path for the gauge indicator
                 var mainPath = "M-.0 -0.05 L  .0 0.05 L";
                 var pathX = String(x);
                 var space = " ";
@@ -85,9 +88,8 @@ function buildGauge(sample) {
                         range: [-1, 1]
                     }
                 }
-                var GAUGE = document.getElementById("gauge");
-                Plotly.newPlot(GAUGE, data, layout
-                )
+                // Render the plot to the div tag with id "gauge"
+                Plotly.newPlot("gauge", data, layout)
             }
         }
     }

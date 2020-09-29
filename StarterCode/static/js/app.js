@@ -16,11 +16,10 @@ function buildMetadata(sample) {
   });
 }
 
-
 function buildCharts(sample) {
   // Using D3 library to read sample.json
   d3.json("samples.json").then(function (data) {
-
+  //  Extract the sample attributes
     for (var i = 0; i < data.samples.length; i++) {
       if (data.samples[i].id == sample) {
         console.log(data.samples[i].otu_ids)
@@ -46,7 +45,6 @@ function buildCharts(sample) {
     // data
     var data = [trace1];
 
-
     var layout = {
       xaxis: { title: "OTU ID" },
       title: "Belly Button Bacteria",
@@ -61,6 +59,7 @@ function buildCharts(sample) {
       var values = sample_values.slice(0, 10).reverse();
       var labels = otu_ids.slice(0, 10).map(otu_id => `OTU ${otu_id}`).reverse();
       var display = otu_labels.slice(0, 10).reverse();
+
       // barchart for the sample Data
       var barChart = {
         x: values,
@@ -69,8 +68,10 @@ function buildCharts(sample) {
         type: "bar",
         orientation: "h"
       };
+
       // data
       var data = [barChart];
+
       // Apply the group bar mode to the layout
       var layout = {
         margin: {
