@@ -105,6 +105,7 @@ function init() {
     const firstSample = sampleNames[0];
     buildCharts(firstSample);
     buildMetadata(firstSample);
+    // Bonus gauge chart
     buildGauge(firstSample);
   });
 }
@@ -113,6 +114,7 @@ function optionChanged(newSample) {
   // Fetch new data each time a new sample is selected
   buildCharts(newSample);
   buildMetadata(newSample);
+  // Bonus gauge chart
   buildGauge(newSample);
 }
 

@@ -4,6 +4,7 @@ function buildGauge(sample) {
     d3.json("samples.json").then((data) => {
         //  Extract the metadata wash frequency attribute
         for (var i = 0; i < data.metadata.length; i++) {
+            console.log(i)
             if (data.metadata[i].id == sample) {
 
                 var wfreq = data.metadata[i].wfreq;
