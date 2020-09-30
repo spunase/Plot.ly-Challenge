@@ -84,6 +84,7 @@ function buildCharts(sample) {
           b: 50
         }
       };
+      
       // Render the plot to the div tag with id "bar"
       Plotly.newPlot("bar", data, layout);
     });
